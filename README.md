@@ -15,8 +15,6 @@ refs: https://gist.github.com/IAMOTZ/9b3d0945f9a9518ebc58c802d3156515
 
 ## nest generate resource ccc 出现 `The Schematic workflow failed. See above.` 
 
-
-
 ```sh
 $ nest generate resource ccc
 ? What transport layer do you use? 
@@ -37,3 +35,20 @@ ni @nestjs/schematics -g
 ```
 
 refs: https://stackoverflow.com/questions/61684382/nestjs-cli-error-collection-nestjs-schematics-cannot-be-resolved
+
+## docker 构建镜像时出现 `ERROR: failed to solve: cannot replace to directory...`
+
+```sh
+ERROR: failed to solve: cannot replace to directory /var/lib/docker/overlay2/vp4s5cq1x5q54a59jjruvpu27/merged/app/node_modules/@eslint/e
+```
+
+解决:
+
+增加 `.dockerignore`, 增加以下内容
+
+```diff
++ node_modules
+```
+
+refs: https://stackoverflow.com/questions/72955265/cannot-replace-to-directory-var-lib-docker-overlay2-if2ip5okvavl8u6jpdtpczuog-m
+
