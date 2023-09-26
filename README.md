@@ -52,3 +52,26 @@ ERROR: failed to solve: cannot replace to directory /var/lib/docker/overlay2/vp4
 
 refs: https://stackoverflow.com/questions/72955265/cannot-replace-to-directory-var-lib-docker-overlay2-if2ip5okvavl8u6jpdtpczuog-m
 
+## 项目使用 lint-staged, 当 `pre-commit`时出现 `SyntaxError: Unexpected token '.'`
+
+```sh
+../node_modules/lint-staged/lib/index.js:112
+    if (runAllError?.ctx?.errors) {
+                    ^
+
+SyntaxError: Unexpected token '.'
+    at Loader.moduleStrategy (internal/modules/esm/translators.js:140:18)
+```
+
+解决:
+
+本地使用的是 `nvm` 管理 Node 版本 由于本地全局环境下 `Node` 版本为 `v12.22.2`, lint-staged 版本为 `v13.2.3`, 导致版本兼容问题
+
+```sh
+# 设置默认版本
+nvm alias default v18.17.1
+```
+
+**设置完成之后需要重启 VS Code**
+
+refs: https://github.com/serverless/serverless/issues/11249#issuecomment-1186439595
