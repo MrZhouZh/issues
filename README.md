@@ -75,3 +75,9 @@ nvm alias default v18.17.1
 **设置完成之后需要重启 VS Code**
 
 refs: https://github.com/serverless/serverless/issues/11249#issuecomment-1186439595
+
+## 使用 Antd InputNumber 组件设置了 `min` 和 `percision`, 清空输入框显示 0
+
+解决: https://github.com/ant-design/ant-design/issues/29754
+
+这里需要注意的是, 受控组件已经帮我们清空为 null, 应该检查是否自己进行格式化了
