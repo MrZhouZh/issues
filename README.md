@@ -82,6 +82,32 @@ refs: https://github.com/serverless/serverless/issues/11249#issuecomment-1186439
 
 这里需要注意的是, 受控组件已经帮我们清空为 null, 应该检查是否自己进行格式化了
 
+
+## 使用 Antd Tree 组件, 异步加载子节点的情况下展开/收起节点卡顿
+
+解决: **必须**使用 `setTimeout` 进行包裹
+
+```diff
+const onLoadData = (eventData: EventDataNode<ITreeItem> | ITreeItem) => {
+    const { key, children, is_last, parent_code } = eventData;
+
+    return new Promise<void>((resolve) => {
+      // 更新树节点, 并设置为新树
++     setTimeout(() => {
+        if (children && Array.isArray(children) && children.length > 0) {
+          resolve();
+          return;
+        }
+        if (is_last) {
+          fetchLeafNode(key, resolve);
+        } else {
+          fetchNode(parent_code, resolve);
+        }
++     }, 0);
+    });
+  };
+```
+
 ## `git clone` 出现 "Failed to connect to github.com port 443 after 4144 ms: Couldn't connect to server"
 
 解决方案:
