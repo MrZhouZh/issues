@@ -81,3 +81,16 @@ refs: https://github.com/serverless/serverless/issues/11249#issuecomment-1186439
 解决: https://github.com/ant-design/ant-design/issues/29754
 
 这里需要注意的是, 受控组件已经帮我们清空为 null, 应该检查是否自己进行格式化了
+
+## `git clone` 出现 "Failed to connect to github.com port 443 after 4144 ms: Couldn't connect to server"
+
+解决方案:
+
+MacOS: 设置 -> 代理 -> 得到 **代理服务器 + 端口**
+
+<img width="670" alt="image" src="https://github.com/MrZhouZh/issues/assets/24643748/9cff85e5-71ed-4d57-84ca-6136b6a40275">
+
+```sh
+git config --global http.proxy http://127.0.0.1:7890
+git config --global https.proxy http://127.0.0.1:7890
+```
